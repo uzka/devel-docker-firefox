@@ -1,0 +1,14 @@
+#!/bin/bash
+CONFIGDIR=$HOME/.dockerconfig/firefox
+mkdir -p $CONFIGDIR
+#if [ ! -f $CONFIGDIR/.config ] ; then
+#	mkdir -p $CONFIGDIR/.config
+#fi
+#echo 'XDG_DOCUMENTS_DIR="/data"' > $CONFIGDIR/.config/user-dirs.dirs
+docker run \
+	--rm \
+	--net=host \
+	--env="DISPLAY" \
+	--volume="$HOME/.Xauthority:/root/.Xauthority:ro" \
+	uzka/firefox \
+	firefox --no-remote $1
